@@ -10,4 +10,16 @@ module Contador (
 
 // Insira seu código aqui
 
-endmodule
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        saida <= 8'd106; // reset inicia com 106
+    else if (acrescer && !decrecer)
+        saida <= saida + 1;
+    else if (!acrescer && decrecer)
+        saida <= saida - 1;
+    else
+        saida <= saida; // mantém valor atual
+end
+
+endmodule  
+
